@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --background: 44 38% 94%;
+  --foreground: 156 34% 7%;
+  --card: 0 0% 100%;
+  --card-foreground: 156 34% 7%;
+  --primary: 157 46% 15%;
+  --primary-foreground: 45 60% 97%;
+  --secondary: 42 30% 92%;
+  --secondary-foreground: 157 40% 12%;
+  --muted: 42 18% 92%;
+  --muted-foreground: 156 9% 38%;
+  --accent: 51 100% 50%;
+  --accent-foreground: 156 40% 7%;
+  --destructive: 8 78% 55%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 42 16% 86%;
+  --input: 42 16% 80%;
+  --ring: 158 45% 22%;
+  --radius: 1.15rem;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+::selection {
+  background: #ffd700;
+  color: #0a1710;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 23, 16, 0.18);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+/* Display face intentionally matches the UI sans: bold and familiar. */
+.font-display {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-style: normal;
+  letter-spacing: -0.035em;
+}
+.font-display .italic,
+.font-display.italic {
+  font-style: normal;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.aurora {
+  background:
+    radial-gradient(58% 46% at 18% 8%, rgba(255, 215, 0, 0.18), transparent 70%),
+    radial-gradient(44% 40% at 88% 18%, rgba(218, 165, 32, 0.16), transparent 70%),
+    radial-gradient(60% 50% at 60% 100%, rgba(72, 187, 120, 0.18), transparent 70%);
+}
+
+.grid-lines {
+  background-image:
+    linear-gradient(to right, rgba(247, 243, 232, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(247, 243, 232, 0.055) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 40%, black 35%, transparent 100%);
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(10, 23, 16, 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.spotlight {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    360px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 215, 0, 0.42),
+    rgba(218, 165, 32, 0.1) 40%,
+    transparent 70%
+  );
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+.spotlight-dark::before {
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(218, 165, 32, 0.24),
+    transparent 65%
+  );
+}
+
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.bubble-in {
+  animation: bubble-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -4%, 0) scale(1.06);
+  }
+}
+.animate-drift {
+  animation: drift 16s ease-in-out infinite;
+}
+
+.chat-canvas {
+  background-color: #efe7d7;
+  background-image: radial-gradient(rgba(10, 23, 16, 0.055) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.shine {
+  background-image: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 25%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 75%
+  );
+  background-size: 200% 100%;
+}
+
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal,
+  .bubble-in {
+    opacity: 1;
+    transform: none;
+  }
+  .bubble-in {
+    animation: none;
+  }
+}

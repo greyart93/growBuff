@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+build
+dist
+.env
+.env.local
+.env.*.local
+*.log
+.DS_Store
+.next-worker
+prisma/dev.db
+coverage
+tsconfig.tsbuildinfo
+.freebuff
+*.png
